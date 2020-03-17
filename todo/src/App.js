@@ -11,14 +11,14 @@ const App = () => {
   }
 
   const clearCompleted = () => {
-    dispatch({ type: 'CLEAR_COMPLETED ', payload: '' })
+    dispatch({ type: 'CLEAR_COMPLETED ', /* payload: '' */ })
   }
 
   return (
       <div className="App">
         <h2>Tasks</h2>
         <TodoList state={ state } />
-        <TodoForm dispatch={ dispatch}  />
+        <TodoForm dispatch={ dispatch }  />
       </div> 
   );
 }

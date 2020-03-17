@@ -6,8 +6,8 @@ const TodoForm = (props) => {
 
     const { clearCompleted } = props;
 
-    const submitTodo = (e, action) => {
-        e.preventDefault();
+    const submitTodo = (event, action) => {
+        event.preventDefault();
         props.dispatch(action);
         setTodo("");
     }
@@ -17,20 +17,20 @@ const TodoForm = (props) => {
         setTodo(newTodo); 
     }
 
-    const clearAll = (e, action) => {
-        e.preventDefault();
+    const clearAll = (event, action) => {
+        event.preventDefault();
         props.dispatch(action);
     }
 
     return (
-        <div>
-            <form onSubmit={(event) => submitTodo(event, {type: 'NEW_TODO', payload: {item: todo, completed: false, id: Date.now()}})}>
-                <input type="text" name="todo" placeholder={'Add Task Here'} value={todo} className="form-field" onChange={handleChange} />
-                <button className="form-field">Add Task</button>
-                <button className="form-field" onClick={(event) => clearAll(event, {type: 'CLEAR_ALL', payload: []})}>Clear All</button>
-                <button className="form-field" onClick={clearCompleted}>Clear Completed Tasks</button>
-            </form>
-        </div>
+        <form className="form-cont" onSubmit={(event) => submitTodo(event, {type: 'NEW_TODO', payload: {item: todo, completed: false, id: Date.now()}})}>
+            <input type="text" name="todo" placeholder={'Add Task Here'} value={todo} className="form-field" onChange={handleChange} />
+            <div className="btn-cont">
+                <button className="form-field form-btn">Add Task</button>
+                <button className="form-field form-btn" onClick={(event) => clearAll(event, {type: 'CLEAR_ALL', payload: []})}>Clear All</button>
+                <button className="form-field form-btn" onClick={clearCompleted}>Clear Completed Tasks</button>
+            </div>
+        </form>
     );
 }
 
